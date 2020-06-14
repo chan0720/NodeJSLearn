@@ -19,8 +19,7 @@ router.get('/',(req,res,next) =>{
     .catch((error) => {
         next(error);
     });
-});
-
+});S
 router.post('/domain', (req, res,next) =>{
     Domain.create({
         userId: req.user.id,
