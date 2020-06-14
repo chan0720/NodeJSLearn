@@ -2,7 +2,7 @@ var express = require('express');
 var axios = require('axios');
 
 var router = express.Router();
-var URL = 'http://localhost:8002/v1';
+var URL = 'http://localhost:8002/v2';
 axios.defaults.headers.origin ='http://localhost:8003'
 const request = async (req, api) => {
   try {
