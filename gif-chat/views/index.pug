@@ -3,7 +3,7 @@ extends layout
 block content
     body
         div F12를 눌러 console 탭과 network 탭을 확인하세요
-        script(src='/soket.io/socket.io.js')
+        script(src='/socket.io/socket.io.js')  
         script.
             var socket = io.connect('http://localhost:8005',{
                 path:'/socket.io',
@@ -11,5 +11,5 @@ block content
             });
             socket.on('news', function (data){
                 console.log(data);
-                socket.emait('reply','Hello Node.JS');
+                socket.emit('reply','Hello Node.JS');
             });
