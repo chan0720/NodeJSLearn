@@ -1,12 +1,12 @@
 var express =require('express');
 var path =  require('path')
-var morgann = require('mogan');
+var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var flash = require('connect-flash');
 require('dotenv').config();
 
-var webSocket =  require('../v1socket');
+var webSocket =  require('./socket');
 var indexRouter = require('./routes');
 
 var app = express();
@@ -29,22 +29,25 @@ app.use(session({
         secure:false,
     },
 }));
+
 app.use(flash());
+
 app.use('/',indexRouter);
+
 app.use((req,res, next) => {
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
 
-app.use((err,req,res, next) => {
+app.use((err, req, res, next) => {
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'developement' ? err: {};
     res.status(err.status ||500);
     res.render('error');
 });
 
-app.listen(app.get('port'),() => {
+var server = app.listen(app.get('port'),() => {
     console.log(app.get('port'),'번 포트에서 대기 중');
 });
 
