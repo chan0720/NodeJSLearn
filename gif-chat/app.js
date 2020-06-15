@@ -1,5 +1,5 @@
 var express =require('express');
-var path =  require('path')
+var path =  require('path');
 var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
@@ -42,7 +42,7 @@ app.use((req,res, next) => {
 
 app.use((err, req, res, next) => {
     res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'developement' ? err: {};
+    res.locals.error = req.app.get('env') === 'development' ? err: {};
     res.status(err.status ||500);
     res.render('error');
 });
